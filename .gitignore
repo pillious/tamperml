@@ -1,0 +1,7 @@
+*.csv
+*.json
+
+.env
+.env*
+!.env.template
+
