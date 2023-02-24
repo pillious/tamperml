@@ -2,12 +2,14 @@ CASIA2.0_revised
 CASIA2.0_Groundtruth
 dataset-dist
 
+__pycache__
+
 *.json
+*.h5
 
 .env
 .env*
 !.env.template
-
 
 *.zip
 
