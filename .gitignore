@@ -1,6 +1,24 @@
+CASIA2.0_revised
+CASIA2.0_Groundtruth
+dataset-dist
+
 *.json
 
 .env
 .env*
 !.env.template
+
+
+*.zip
+
+*.csv
+*.txt
+
+*.h5
+*.hdf5
+
+*.tif
+*.png
+*.jpg
+*.jpeg
 

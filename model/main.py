@@ -172,14 +172,30 @@ mask_images = list(df['target'])
 
 
 
-ELA_images_with_path = [dataset_path+'ELA_IMAGES/'+i for i in os.listdir(dataset_path+'ELA_IMAGES/') ]
-fake_mask_with_path = [dataset_path+"resized_images/fake_masks/"+i for i in os.listdir(dataset_path+"resized_images/fake_masks/") ]
+ids_df = pd.read_csv('ids.csv')
 
-X_train, X_val, Y_train, Y_val = train_test_split(ELA_images_with_path,fake_mask_with_path , test_size=0.12, random_state=7)
+# ELA_images_with_path = [dataset_path+'ELA_IMAGES/'+i for i in os.listdir(dataset_path+'ELA_IMAGES/') ]
+# fake_mask_with_path = [dataset_path+"resized_images/fake_masks/"+i for i in os.listdir(dataset_path+"resized_images/fake_masks/") ]
+
+ELA_images_with_path = []
+fake_mask_with_path = []
+
+for t in ids_df['tampered']:
+    ELA_images_with_path.append(dataset_path+'ELA_IMAGES/'+t)
+
+for g in ids_df['target']:
+    fake_mask_with_path.append(dataset_path+"resized_images/fake_masks/"+g)
+
+X_train, X_val, Y_train, Y_val = train_test_split(ELA_images_with_path,fake_mask_with_path , test_size=0.12, random_state=7, shuffle=False)
 X_train = X_train[:1000]
 Y_train = Y_train[:1000]
 X_val = X_val[:75]
 Y_val = Y_val[:75]
+
+# print(X_train[0])
+# print(Y_train[0])
+# print(X_val[0])
+# print(Y_val[0])
 
 # with open("X_train.txt", "wb") as f:   #Pickling
 #     pickle.dump(X_train, f) 
@@ -252,9 +268,49 @@ results=model.fit_generator(loadImagesBatchwise(X_train,Y_train,batch_size),step
 
 model.save('new_model_phase2.hdf5')
 
+# model = load_model('model_checkpoints/model_phase_2.hdf5', {"metric": metric})
+# print("model loaded")
 
+# test_images=LoadImages(X_val[:5])
+# predicted=model.predict(test_images)
 
+# def plot_predicted_images(index):
+#     """Plots the predicted masks of tampered images"""
+#     #ret, bw_img = cv2.threshold((predicted[index]*255),127,255,cv2.THRESH_BINARY)
+#     plt.imsave('output/pred_mask.png',predicted[index])
+#     im_gray = cv2.imread('output/pred_mask.png', cv2.IMREAD_GRAYSCALE)
+#     (thresh, im_bw) = cv2.threshold(im_gray, 220, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)
+#     #imshow(im_bw)
+#     fig = plt.figure(figsize=(20,10))
+#     ax1 = fig.add_subplot(441)
+#     ax2 = fig.add_subplot(442)
+#     ax3 = fig.add_subplot(443)
+#     ax4 = fig.add_subplot(444)
+    
+#     ax1.set_title("actual_image")
+#     ax2.set_title("actual_mask")
+#     ax3.set_title("predicted_mask")
+#     ax4.set_title("binary_predicted_mask")
+#     actual_img = imread(path_tampered+X_val[index].split('/')[-1])
 
+#     temp_path = X_val[index].split('/')[-1]
+#     print(path_tampered+temp_path)
 
+#     actual_mask = imread(Y_val[index])
+#     # predicted_mask = imread(predicted[0])
+
+    
+#     ax1.imshow(actual_img)
+#     ax2.imshow(actual_mask)
+#     ax3.imshow(predicted[index])
+#     ax4.imshow(im_bw)
+
+#     plt.imsave('output/actual_img.png',actual_img)
+#     plt.imsave('output/actual_mask.png',actual_mask)
+#     plt.imsave('output/im_bw.png',im_bw)
+
+    
+
+# plot_predicted_images(0)
 
 
