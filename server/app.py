@@ -36,20 +36,25 @@ def ELA(img_path):
     return diff
 
 
+# @app.route('/', methods=['GET'])
 @app.route("/")
 def index():
+    # args = request.args
+    # playlistIds = args.get("playlistIds").split(",")
+
     x_casia = []
-    x_casia.append(np.array(ELA('test.png').resize((128, 128))).flatten() / 255.0)
+    x_casia.append(
+        np.array(ELA('test.png').resize((128, 128))).flatten() / 255.0)
     x_casia = np.array(x_casia)
     x_casia = x_casia.reshape(-1, 128, 128, 3)
 
     model = load_model('new_model_casia.h5')
-    predictions = model.predict(x_casia)
-    predictions = np.argmax(predictions, axis=1)
+    pred = model.predict(x_casia)
+    pred_classification = np.argmax(pred, axis=1)
+    pred_confidence = np.max(pred, axis=1)
 
-    # class label 1 ===>tampered
-    # class label 0====>real
+    resp = {'data': []}
+    for i, j in zip(pred_classification, pred_confidence):
+        resp['data'].append({'isTampered': True if int(i) == 1 else False , 'confidence': float(j)})
 
-    print(predictions)
-
-    return "use the /recommend route"
+    return jsonify(resp)
