@@ -55,6 +55,16 @@ def index():
 
     resp = {'data': []}
     for i, j in zip(pred_classification, pred_confidence):
-        resp['data'].append({'isTampered': True if int(i) == 1 else False , 'confidence': float(j)})
+        resp['data'].append({'isTampered': True if int(
+            i) == 1 else False, 'confidence': float(j)})
 
     return jsonify(resp)
+
+
+@app.route('/upload', methods=['POST'])
+def upload():
+    args = request.get_json()
+    print("TEST")
+    print(args)
+    print(args.get('file'))
+    return jsonify({'data': 'success'})
