@@ -1,3 +1,9 @@
+CASIA2.0_revised
+CASIA2.0_Groundtruth
+dataset-dist
+
+__pycache__
+
 *.json
 *.h5
 
@@ -5,4 +11,16 @@
 .env*
 !.env.template
 
-__pycache__
+*.zip
+
+*.csv
+*.txt
+
+*.h5
+*.hdf5
+
+*.tif
+*.png
+*.jpg
+*.jpeg
+
