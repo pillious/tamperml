@@ -1,6 +1,8 @@
 *.json
+*.h5
 
 .env
 .env*
 !.env.template
 
+__pycache__
