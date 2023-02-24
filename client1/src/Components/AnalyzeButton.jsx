@@ -14,8 +14,36 @@ const Button = styled.button`
 `;
 
 const AnalyzeButton = (props) => {
+  const setImagePath = (e) => {
+    let reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+
+    reader.onload = () => {
+      this.setState({
+        queryImage: reader.result,
+      });
+    };
+  };
+
+  const postImage = () => {
+    fetch("", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(this.state.queryImage),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // do stuff with data
+      });
+  };
+
   const handleClick = (event) => {
-    alert("Handle Click");
+    if ((props.files).length == 0) {
+      alert("No valid files uploaded")
+    } else {
+      alert((props.files).toString);
+    }
+    
   };
   return (
     <>

@@ -1,7 +1,7 @@
 import React from "react";
+import { useRef } from "react";
 import styled from "styled-components";
 
-// Style the Button component
 const Button = styled.button`
   background-color: #0a1726;
   color: white;
@@ -12,21 +12,19 @@ const Button = styled.button`
   margin: 10px 0px;
   cursor: pointer;
 `;
-const FileUploader = (props) => {
-  // Create a reference to the hidden file input element
-  const hiddenFileInput = React.useRef(null);
 
-  // Programatically click the hidden file input element
-  // when the Button component is clicked
-  const handleClick = (event) => {
+const FileUploader = (props) => {
+  const hiddenFileInput = useRef(null);
+
+  const handleClick = () => {
     hiddenFileInput.current.click();
   };
-  // Call a function (passed as a prop from the parent component)
-  // to handle the user-selected file
+
   const handleChange = (event) => {
     const fileUploaded = event.target.files[0];
-    props.handleFile(fileUploaded);
+    props.handleFile(fileUploaded); // Call the handleFile function passed as a prop
   };
+
   return (
     <>
       <Button onClick={handleClick}>Upload File(s)</Button>
@@ -39,5 +37,6 @@ const FileUploader = (props) => {
     </>
   );
 };
+
 
 export default FileUploader;

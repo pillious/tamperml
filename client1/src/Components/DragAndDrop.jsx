@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import FileUploader from "./FileUploader";
+import AnalyzeButton from "./AnalyzeButton.jsx";
 
 // Import React FilePond
 import { FilePond, registerPlugin } from "react-filepond";
@@ -18,20 +20,32 @@ registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
 // Our app
 const DragAndDrop = (props) => {
-  const [files, setFiles] = useState([]);
+  // const [files, setFiles] = useState([]);
+
+  // // Add this function to handle adding files from the FileUploader component
+  // const handleAddFile = (file) => {
+  //   setFiles([...files, file]);
+  // };
+
   return (
-    <div className="App">
+    <div>
       <FilePond
-        files={files}
-        onupdatefiles={setFiles}
+        files={props.files}
+        onupdatefiles={props.setFiles}
         allowMultiple={true}
         maxFiles={3}
         server="/api"
-        name="files" /* sets the file input name, it's filepond by default */
+        name="files"
         labelIdle='Drag & Drop your files or <span class="filepond--label-action">Browse</span>'
       />
+    
+        <div className="buttons">
+          <FileUploader handleFile={props.handleAddFile} />            
+          <AnalyzeButton files={props.files}/>
+        </div>
     </div>
   );
 };
+
 
 export default DragAndDrop;

@@ -1,20 +1,22 @@
 import "./App.css";
-import FileUploader from "./Components/FileUploader.jsx";
 import DragAndDrop from "./Components/DragAndDrop.jsx";
-import AnalyzeButton from "./Components/AnalyzeButton.jsx";
 import ResultCard from "./Components/ResultCard/ResultCard.jsx";
+import React, { useState } from "react";
 
 function App() {
+  const [files, setFiles] = useState([]);
+
+  // Add this function to handle adding files from the FileUploader component
+  const handleAddFile = (file) => {
+    setFiles([...files, file]);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
         <h1 id="siteName">TamperML</h1>
         <div className="uploadArea">
-          <DragAndDrop />
-          <div className="buttons">
-            <FileUploader />
-            <AnalyzeButton />
-          </div>
+          <DragAndDrop files={files} setFiles={setFiles} handleAddFile={handleAddFile}/>
           <ResultCard />
         </div>
       </header>
