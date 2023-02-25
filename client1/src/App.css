@@ -3,6 +3,18 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    margin: auto;
+    padding: 2rem 0;
+    background-color: #282c34;
+}
+
+.App {
+    text-align: center;
+    height: 100%;
 }
 
 html {
@@ -31,19 +43,34 @@ html {
 }
 
 #siteName {
-    font-size: 100px;
+    font-size: calc(5.7rem + 2vw);
     font-family: 'Imprima', serif;
     letter-spacing: -3px;
     transition: 700ms ease;
-    font-variation-settings: 'wght' 311;
+    font-weight: 400;
     margin-bottom: 0.8rem;
-    padding-bottom: 1rem;
+    padding: 2rem;
     color: #9fc1db;
     outline: none;
     text-align: center;
 }
 
 #siteName:hover {
+    font-weight: 400;
+    letter-spacing: 1.77px;
     font-variation-settings: 'wght' 582;
     letter-spacing: 1px;
+    background-color: #282c34;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    main {
+        max-width: 100%;
+    }
 }

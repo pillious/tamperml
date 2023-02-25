@@ -27,25 +27,27 @@ function App() {
             .then((res) => {
                 console.log(files);
                 console.log(res.data);
-                setPredictions(res.data)
+                setPredictions(res.data);
             })
             .catch((err) => console.log(err));
     };
 
     return (
-        <div className='App'>
-            <header className='App-header'>
-                <h1 id='siteName'>TamperML</h1>
-                <div className='uploadArea'>
-                    <DragAndDrop
-                        files={files}
-                        handleAddFile={handleAddFile}
-                        postImage={postImage}
-                    />
-                    <ResultCard files={files} predictions={predictions}/>
-                </div>
-            </header>
-        </div>
+        <main>
+            <div className='App'>
+                <header className='App-header'>
+                    <h1 id='siteName'>TamperML</h1>
+                    <div className='uploadArea'>
+                        <DragAndDrop
+                            files={files}
+                            handleAddFile={handleAddFile}
+                            postImage={postImage}
+                        />
+                        <ResultCard files={files} predictions={predictions} />
+                    </div>
+                </header>
+            </div>
+        </main>
     );
 }
 

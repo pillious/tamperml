@@ -5,7 +5,9 @@ const Button = styled.button`
   background-color: #0a1726;
   color: white;
   font-size: 2rem;
-  padding: 10px 60px;
+  font-family: "Imprima", serif;
+  padding: 10px 50px;
+  font-weight: 300;
   border-color: #0a1726;
   border-radius: 1rem;
   margin: 10px 0px;
@@ -41,6 +43,5 @@ const FileUploader = (props) => {
     </>
   );
 };
-
 
 export default FileUploader;

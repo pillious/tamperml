@@ -7,4 +7,17 @@
     object-fit: cover;
     height: 300px;
     aspect-ratio: 1/1;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 3rem;
+    font-family: 'Imprima', serif;
+}
+
+h1 {
+    padding-top: 1rem;
+    font-weight: 400;
+}
+
+p {
+    font-weight: 300;
 }
