@@ -1,23 +1,35 @@
+.analyzedCard {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
 #resultImages {
     display: flex;
     justify-content: space-evenly;
 }
 
 #resultImages img {
-    object-fit: cover;
-    height: 300px;
+    object-fit: contain;
+    height: 400px;
     aspect-ratio: 1/1;
     display: flex;
     justify-content: space-evenly;
     padding: 3rem;
     font-family: 'Imprima', serif;
 }
-
-h1 {
+.prediction {
     padding-top: 1rem;
     font-weight: 400;
+    color: green;
 }
 
-p {
+.tampered {
+    color: red;
+}
+
+.confidence {
     font-weight: 300;
+    font-size: 1.1rem;
 }

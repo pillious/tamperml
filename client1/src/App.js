@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import './App.css';
 import DragAndDrop from './Components/DragAndDrop.jsx';
 import ResultCard from './Components/ResultCard/ResultCard.jsx';
@@ -7,6 +7,8 @@ function App() {
     const [files, setFiles] = useState([]);
     const [predictions, setPredictions] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+
+    const ref = useRef(null);
 
     // Add this function to handle adding files from the FileUploader component
     const handleAddFile = (incomingFiles) => {
@@ -18,6 +20,7 @@ function App() {
 
         setIsLoading(true);
         document.body.style.overflow = 'hidden';
+        window.scrollTo(0, 0);
         fetch('http://localhost:5000/analyze', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -28,6 +31,7 @@ function App() {
                 setPredictions(res.data);
                 setIsLoading(false);
                 document.body.style.overflow = 'unset';
+                if (ref.current) ref.current.scrollIntoView({ behavior: 'smooth' });
             })
             .catch((err) => {
                 console.log(err);
@@ -50,7 +54,7 @@ function App() {
                             handleAddFile={handleAddFile}
                             postImage={postImage}
                         />
-                        <ResultCard files={files} predictions={predictions} />
+                        <ResultCard files={files} predictions={predictions} ref={ref} />
                     </div>
                 </header>
             </div>
