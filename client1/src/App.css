@@ -6,9 +6,12 @@
     box-sizing: border-box;
 }
 
+html {
+    height: 100%;
+}
+
 main {
     margin: auto;
-    padding: 2rem 0;
     background-color: #282c34;
 }
 
@@ -17,12 +20,52 @@ main {
     height: 100%;
 }
 
-html {
-    height: 100%;
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: #000;
+    opacity: 0.5;
+    z-index: 100000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.App {
-    text-align: center;
+.hide {
+    display: none;
+}
+
+.spinner {
+    border: 8px solid #fff;
+    border-radius: 50%;
+    border-top: 8px solid #3498db;
+    width: 75px;
+    height: 75px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+    z-index: inherit;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .App-header {
@@ -34,6 +77,12 @@ html {
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
+}
+
+.disclaimer {
+    font-size: 1rem;
+    padding-bottom: 0.5rem;
+    color: #aaa;
 }
 
 .buttons {
@@ -65,7 +114,7 @@ html {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: calc(10px + 2vmin);
+    transform: scale(1.1);
     color: white;
 }
 
