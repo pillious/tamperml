@@ -4,6 +4,11 @@ import tensorflow as tf
 from keras.models import Model, load_model
 from PIL import Image, ImageChops
 import numpy as np
+import base64
+import os
+import uuid
+import base64
+import io
 
 app = Flask(__name__)
 CORS(app)
@@ -21,12 +26,15 @@ def ELA(img_path):
         diff = ImageChops.difference(original, temporary)
 
     except:
-
         original.convert('RGB').save(TEMP, quality=90)
         temporary = Image.open(TEMP)
         diff = ImageChops.difference(original.convert('RGB'), temporary)
 
     d = diff.load()
+    if isinstance(d[0, 0], int):
+        # if image has single channel, convert to RGB
+        diff = diff.convert('RGB')
+        d = diff.load()
 
     WIDTH, HEIGHT = diff.size
     for x in range(WIDTH):
@@ -36,15 +44,33 @@ def ELA(img_path):
     return diff
 
 
-# @app.route('/', methods=['GET'])
-@app.route("/")
-def index():
-    # args = request.args
-    # playlistIds = args.get("playlistIds").split(",")
+def generate_guids(num) -> 'list[str]':
+    guids: 'list[str]' = []
+    for _ in range(num):
+        guids.append(str(uuid.uuid4()))
+    return guids
 
-    x_casia = []
-    x_casia.append(
-        np.array(ELA('test.png').resize((128, 128))).flatten() / 255.0)
+
+def save_images(base64strs: 'list[str]') -> 'list[str]':
+    guids = generate_guids(len(base64strs))
+
+    for i, s in enumerate(base64strs):
+        with open(f'images/{guids[i]}.png', "wb") as fh:
+            fh.write(base64.b64decode(s))
+
+    return guids
+
+
+def delete_images(ids: 'list[str]'):
+    for id in ids:
+        os.remove(f'images/{id}.png')
+
+
+def predict(ids: 'list[str]'):
+    paths = list(map(lambda id: f'images/{id}.png', ids))
+
+    x_casia = [np.array(ELA(p).resize((128, 128))
+                        ).flatten() / 255.0 for p in paths]
     x_casia = np.array(x_casia)
     x_casia = x_casia.reshape(-1, 128, 128, 3)
 
@@ -58,13 +84,24 @@ def index():
         resp['data'].append({'isTampered': True if int(
             i) == 1 else False, 'confidence': float(j)})
 
-    return jsonify(resp)
+    return resp
 
 
-@app.route('/upload', methods=['POST'])
-def upload():
+@app.route("/")
+def index():
+    return "API is running"
+
+
+@app.route('/analyze', methods=['POST'])
+def analyze():
     args = request.get_json()
-    print("TEST")
-    print(args)
-    print(args.get('file'))
-    return jsonify({'data': 'success'})
+    base64strs: 'list[str]' = args.get('files')
+
+    if (len(base64strs) == 0):
+        return jsonify({'data': []})
+
+    ids = save_images(base64strs)
+    resp = predict(ids)
+    delete_images(ids)
+
+    return jsonify(resp)

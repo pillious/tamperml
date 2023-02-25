@@ -1,4 +1,10 @@
 #resultImages {
-  display: flex;
-  justify-content: space-evenly;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#resultImages img {
+    object-fit: cover;
+    height: 300px;
+    aspect-ratio: 1/1;
 }

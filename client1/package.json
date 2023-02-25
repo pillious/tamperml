@@ -7,6 +7,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "filepond": "^4.30.4",
+    "filepond-plugin-file-encode": "^2.1.10",
     "filepond-plugin-image-exif-orientation": "^1.0.11",
     "filepond-plugin-image-preview": "^4.6.11",
     "react": "^18.2.0",

@@ -1,5 +1,4 @@
-import React from "react";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 
 const Button = styled.button`
@@ -21,8 +20,12 @@ const FileUploader = (props) => {
   };
 
   const handleChange = (event) => {
-    const fileUploaded = event.target.files[0];
-    props.handleFile(fileUploaded); // Call the handleFile function passed as a prop
+    const filesUploaded = event.target.files;
+    const filesArray = [];
+    for (const f of filesUploaded) {
+      filesArray.push(f);
+    }
+    props.handleFile(filesArray); // Call the handleFile function passed as a prop
   };
 
   return (
@@ -30,6 +33,7 @@ const FileUploader = (props) => {
       <Button onClick={handleClick}>Upload File(s)</Button>
       <input
         type="file"
+        multiple
         ref={hiddenFileInput}
         onChange={handleChange}
         style={{ display: "none" }}
