@@ -1,4 +1,16 @@
 #resultImages {
   display: flex;
   justify-content: space-evenly;
+  padding: 3rem;
+  font-family: 'Imprima', serif;
+}
+
+h1 {
+  padding-top: 1rem;
+  font-weight: 400;
+}
+
+
+p {
+  font-weight: 300;
 }

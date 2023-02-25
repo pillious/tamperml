@@ -1,15 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Imprima&display=swap");
 
-html {
-  height: auto;}
+main {
+  margin: auto;
+  padding: 10em 0 15em 0;
+  background-color: #282c34;
+}
 
-*
+  *
 { margin: 0;
-  padding: 0;}
+  padding: 0;
+}
   
 
 .App {
   text-align: center;
+  height: 100%;
 }
 
 .App-logo {
@@ -25,7 +30,6 @@ html {
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,32 +38,33 @@ html {
   color: white;
 }
 
+
 .App-link {
   color: #61dafb;
 }
 
 .buttons {
-  gap: 10rem;
+  gap: 10vw;
   display: flex;
   justify-content: center;
 }
 
 #siteName {
-  font-size: 100px;
+  font-size: calc(5.70rem + 2vw);
   font-family: 'Imprima', serif;
   letter-spacing: -3px;
   transition: 700ms ease;
-  font-variation-settings: "wght" 311;
+  font-weight: 400;
   margin-bottom: 0.8rem;
-  padding-bottom: 1rem;
+  padding: 2rem;
   color: #9fc1db;
   outline: none;
   text-align: center;
 }
 
 #siteName:hover {
-  font-variation-settings: "wght" 582; 
-  letter-spacing: 1px;
+  font-weight: 400;
+  letter-spacing: 1.77px;
 }
 
 
@@ -69,5 +74,11 @@ html {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  main {
+    max-width: 100%;
   }
 }

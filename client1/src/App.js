@@ -12,15 +12,21 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1 id="siteName">TamperML</h1>
-        <div className="uploadArea">
-          <DragAndDrop files={files} setFiles={setFiles} handleAddFile={handleAddFile}/>
-          <ResultCard />
-        </div>
-      </header>
-    </div>
+    <main>
+      <div className="App">
+        <header className="App-header">
+          <h1 id="siteName">TamperML</h1>
+          <div className="uploadArea">
+            <DragAndDrop
+              files={files}
+              setFiles={setFiles}
+              handleAddFile={handleAddFile}
+            />
+            <ResultCard />
+          </div>
+        </header>
+      </div>
+    </main>
   );
 }
 
