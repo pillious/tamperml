@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/pillious/TamperML/static/css/main.8300ea2b.css",
+    "main.js": "/pillious/TamperML/static/js/main.40eef2cb.js",
+    "static/js/787.df73a388.chunk.js": "/pillious/TamperML/static/js/787.df73a388.chunk.js",
+    "index.html": "/pillious/TamperML/index.html",
+    "main.8300ea2b.css.map": "/pillious/TamperML/static/css/main.8300ea2b.css.map",
+    "main.40eef2cb.js.map": "/pillious/TamperML/static/js/main.40eef2cb.js.map",
+    "787.df73a388.chunk.js.map": "/pillious/TamperML/static/js/787.df73a388.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8300ea2b.css",
+    "static/js/main.40eef2cb.js"
+  ]
+}
