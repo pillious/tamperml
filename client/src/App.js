@@ -8,7 +8,8 @@ function App() {
     const [predictions, setPredictions] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
-    const ref = useRef(null);
+    const resultRef = useRef(null);
+    const mainRef = useRef(null);
 
     // Add this function to handle adding files from the FileUploader component
     const handleAddFile = (incomingFiles) => {
@@ -20,7 +21,7 @@ function App() {
 
         setIsLoading(true);
         document.body.style.overflow = 'hidden';
-        window.scrollTo(0, 0);
+        if (mainRef.current) mainRef.current.scrollIntoView();
         fetch('https://tamperml.pythonanywhere.com/analyze', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -31,7 +32,7 @@ function App() {
                 setPredictions(res.data);
                 setIsLoading(false);
                 document.body.style.overflow = 'unset';
-                if (ref.current) ref.current.scrollIntoView({ behavior: 'smooth' });
+                if (resultRef.current) resultRef.current.scrollIntoView({ behavior: 'smooth' });
             })
             .catch((err) => {
                 console.error(err);
@@ -41,7 +42,7 @@ function App() {
     };
 
     return (
-        <main>
+        <main ref={mainRef}>
             <div className='App'>
                 <div className={`overlay ${isLoading === true ? '' : 'hide'}`}>
                     <div className='spinner' />
@@ -68,7 +69,7 @@ function App() {
                             handleAddFile={handleAddFile}
                             postImage={postImage}
                         />
-                        <ResultCard files={files} predictions={predictions} ref={ref} />
+                        <ResultCard files={files} predictions={predictions} ref={resultRef} />
                     </div>
                 </div>
             </div>
