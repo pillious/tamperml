@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from keras.models import load_model
 from PIL import Image, ImageChops
@@ -10,6 +10,7 @@ import uuid
 app = Flask(__name__)
 CORS(app)
 
+model = None
 
 def ELA(img_path):
     """Performs Error Level Analysis over a directory of images"""
@@ -64,6 +65,8 @@ def delete_images(ids: 'list[str]'):
 
 
 def predict(ids: 'list[str]'):
+    global model
+
     paths = list(map(lambda id: f'images/{id}.png', ids))
 
     x_casia = [np.array(ELA(p).resize((128, 128))
@@ -71,7 +74,9 @@ def predict(ids: 'list[str]'):
     x_casia = np.array(x_casia)
     x_casia = x_casia.reshape(-1, 128, 128, 3)
 
-    model = load_model('new_model_casia.h5')
+    if model == None:
+        model = load_model('assets/new_model_casia.h5')
+    
     pred = model.predict(x_casia)
     pred_classification = np.argmax(pred, axis=1)
     pred_confidence = np.max(pred, axis=1)
