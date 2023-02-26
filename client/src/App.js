@@ -5,6 +5,7 @@ import ResultCard from './Components/ResultCard/ResultCard.jsx';
 
 function App() {
     const [files, setFiles] = useState([]);
+    const [predictionImages, setPredictionImages] = useState([]);
     const [predictions, setPredictions] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -13,13 +14,18 @@ function App() {
 
     // Add this function to handle adding files from the FileUploader component
     const handleAddFile = (incomingFiles) => {
-        setFiles(incomingFiles);
+        setFiles((prev) => [...prev, ...incomingFiles]);
     };
+
+    const handleUpdateFiles = (incomingfiles) => {
+        setFiles(incomingfiles)
+    }
 
     const postImage = () => {
         const filesBase64 = files.map((f) => f.getFileEncodeBase64String());
 
         setIsLoading(true);
+        setPredictionImages(files);
         document.body.style.overflow = 'hidden';
         if (mainRef.current) mainRef.current.scrollIntoView();
         fetch('https://tamperml.pythonanywhere.com/analyze', {
@@ -30,12 +36,14 @@ function App() {
             .then((res) => res.json())
             .then((res) => {
                 setPredictions(res.data);
+                setFiles([]);
                 setIsLoading(false);
                 document.body.style.overflow = 'unset';
                 if (resultRef.current) resultRef.current.scrollIntoView({ behavior: 'smooth' });
             })
             .catch((err) => {
                 console.error(err);
+                setFiles([]);
                 setIsLoading(false);
                 document.body.style.overflow = 'unset';
             });
@@ -66,10 +74,15 @@ function App() {
                     <div className='uploadArea'>
                         <DragAndDrop
                             files={files}
+                            handleUpdateFile={handleUpdateFiles}
                             handleAddFile={handleAddFile}
                             postImage={postImage}
                         />
-                        <ResultCard files={files} predictions={predictions} ref={resultRef} />
+                        <ResultCard
+                            files={predictionImages}
+                            predictions={predictions}
+                            ref={resultRef}
+                        />
                     </div>
                 </div>
             </div>

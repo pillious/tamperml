@@ -27,7 +27,7 @@ const DragAndDrop = (props) => {
         <div>
             <FilePond
                 files={props.files}
-                onupdatefiles={props.handleAddFile}
+                onupdatefiles={props.handleUpdateFile}
                 allowMultiple={true}
                 maxFiles={20}
                 name='files'
