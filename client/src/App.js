@@ -5,7 +5,6 @@ import ResultCard from './Components/ResultCard/ResultCard.jsx';
 
 function App() {
     const [files, setFiles] = useState([]);
-    const [predictionImages, setPredictionImages] = useState([]);
     const [predictions, setPredictions] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -18,14 +17,13 @@ function App() {
     };
 
     const handleUpdateFiles = (incomingfiles) => {
-        setFiles(incomingfiles)
-    }
+        setFiles(incomingfiles);
+    };
 
     const postImage = () => {
         const filesBase64 = files.map((f) => f.getFileEncodeBase64String());
 
         setIsLoading(true);
-        setPredictionImages(files);
         document.body.style.overflow = 'hidden';
         if (mainRef.current) mainRef.current.scrollIntoView();
         fetch('https://tamperml.pythonanywhere.com/analyze', {
@@ -35,7 +33,11 @@ function App() {
         })
             .then((res) => res.json())
             .then((res) => {
-                setPredictions(res.data);
+                const preds = [];
+                res.data.forEach((p, i) => {
+                    preds.push({ base64: files[i].getFileEncodeBase64String(), isTampered: p.isTampered, confidence: p.confidence });
+                })
+                setPredictions(preds);
                 setFiles([]);
                 setIsLoading(false);
                 document.body.style.overflow = 'unset';
@@ -79,7 +81,6 @@ function App() {
                             postImage={postImage}
                         />
                         <ResultCard
-                            files={predictionImages}
                             predictions={predictions}
                             ref={resultRef}
                         />
