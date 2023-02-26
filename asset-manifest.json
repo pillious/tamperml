@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/TamperML/static/css/main.c6d7c6be.css",
-    "main.js": "/TamperML/static/js/main.730d0c9a.js",
-    "static/js/787.df73a388.chunk.js": "/TamperML/static/js/787.df73a388.chunk.js",
-    "index.html": "/TamperML/index.html",
-    "main.c6d7c6be.css.map": "/TamperML/static/css/main.c6d7c6be.css.map",
-    "main.730d0c9a.js.map": "/TamperML/static/js/main.730d0c9a.js.map",
-    "787.df73a388.chunk.js.map": "/TamperML/static/js/787.df73a388.chunk.js.map"
+    "main.css": "/tamperml/static/css/main.c6d7c6be.css",
+    "main.js": "/tamperml/static/js/main.651a5c4c.js",
+    "static/js/787.df73a388.chunk.js": "/tamperml/static/js/787.df73a388.chunk.js",
+    "index.html": "/tamperml/index.html",
+    "main.c6d7c6be.css.map": "/tamperml/static/css/main.c6d7c6be.css.map",
+    "main.651a5c4c.js.map": "/tamperml/static/js/main.651a5c4c.js.map",
+    "787.df73a388.chunk.js.map": "/tamperml/static/js/787.df73a388.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c6d7c6be.css",
-    "static/js/main.730d0c9a.js"
+    "static/js/main.651a5c4c.js"
   ]
 }
