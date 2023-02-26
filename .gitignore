@@ -4,7 +4,6 @@ dataset-dist
 
 __pycache__
 
-*.json
 *.h5
 
 .env
