@@ -1,14 +1,11 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import tensorflow as tf
-from keras.models import Model, load_model
+from keras.models import load_model
 from PIL import Image, ImageChops
 import numpy as np
 import base64
 import os
 import uuid
-import base64
-import io
 
 app = Flask(__name__)
 CORS(app)
@@ -55,7 +52,7 @@ def save_images(base64strs: 'list[str]') -> 'list[str]':
     guids = generate_guids(len(base64strs))
 
     for i, s in enumerate(base64strs):
-        with open(f'images/{guids[i]}.png', "wb") as fh:
+        with open(f'images/{guids[i]}.png', "w+b") as fh:
             fh.write(base64.b64decode(s))
 
     return guids
