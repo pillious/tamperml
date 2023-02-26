@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/tamperml/static/css/main.c6d7c6be.css",
+    "main.css": "/tamperml/static/css/main.36bc4736.css",
     "main.js": "/tamperml/static/js/main.3c8e263d.js",
     "static/js/787.df73a388.chunk.js": "/tamperml/static/js/787.df73a388.chunk.js",
     "index.html": "/tamperml/index.html",
-    "main.c6d7c6be.css.map": "/tamperml/static/css/main.c6d7c6be.css.map",
+    "main.36bc4736.css.map": "/tamperml/static/css/main.36bc4736.css.map",
     "main.3c8e263d.js.map": "/tamperml/static/js/main.3c8e263d.js.map",
     "787.df73a388.chunk.js.map": "/tamperml/static/js/787.df73a388.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c6d7c6be.css",
+    "static/css/main.36bc4736.css",
     "static/js/main.3c8e263d.js"
   ]
 }
