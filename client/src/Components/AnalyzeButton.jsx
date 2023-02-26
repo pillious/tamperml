@@ -24,8 +24,7 @@ const AnalyzeButton = (props) => {
         }
     }, [props.files]);
 
-    const handleClick = (event) => {
-        console.log(props);
+    const handleClick = () => {
         if (props.files.length === 0) {
             alert('No valid files uploaded');
         } else {

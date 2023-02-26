@@ -68,7 +68,7 @@ main {
     }
 }
 
-.App-header {
+.App-body {
     background-color: #282c34;
     min-height: 100vh;
     display: flex;
@@ -77,6 +77,22 @@ main {
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
+}
+
+.App-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.App-header a {
+    display: inline-block;
+    height: 64px;
+    width: 64px;
+}
+
+.App-header a:hover svg g {
+    fill: #fff;
 }
 
 .disclaimer {
