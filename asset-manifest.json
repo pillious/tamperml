@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/TamperML/static/css/main.8300ea2b.css",
-    "main.js": "/TamperML/static/js/main.2e9ee5ac.js",
+    "main.css": "/TamperML/static/css/main.c6d7c6be.css",
+    "main.js": "/TamperML/static/js/main.730d0c9a.js",
     "static/js/787.df73a388.chunk.js": "/TamperML/static/js/787.df73a388.chunk.js",
     "index.html": "/TamperML/index.html",
-    "main.8300ea2b.css.map": "/TamperML/static/css/main.8300ea2b.css.map",
-    "main.2e9ee5ac.js.map": "/TamperML/static/js/main.2e9ee5ac.js.map",
+    "main.c6d7c6be.css.map": "/TamperML/static/css/main.c6d7c6be.css.map",
+    "main.730d0c9a.js.map": "/TamperML/static/js/main.730d0c9a.js.map",
     "787.df73a388.chunk.js.map": "/TamperML/static/js/787.df73a388.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8300ea2b.css",
-    "static/js/main.2e9ee5ac.js"
+    "static/css/main.c6d7c6be.css",
+    "static/js/main.730d0c9a.js"
   ]
 }
